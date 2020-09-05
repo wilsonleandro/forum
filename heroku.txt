@@ -1,0 +1,40 @@
+https://devcenter.heroku.com/articles/container-registry-and-runtime
+
+Com o Docker iniciado execute o comando para conectar ao Heroku
+> heroku login
+
+Login no registro do container
+> heroku container:login
+
+Clone um projeto do Github
+> git clone https://github.com/wilsonleandro/forum.git
+
+> heroku git:remote -a alura-forum
+
+Dentro do projeto da aplicação inicie o aplicativo
+> heroku create
+
+Declare as variaveis de ambiente da configuração
+Navegue http://dashboard.heroku.com/apps/alura-forum
+Settings - Config Vars:
+    PORT: 8080
+    SPRING_PROFILES_ACTIVE: prod
+    FORUM_DATABASE_URL: jdbc:h2:mem:alura-forum
+    FORUM_DATABASE_USERNAME: sa
+    FORUM_DATABASE_PASSWORD:
+    FORUM_JWT_SECRET: $2a$10$ndbFRmx59Mr8ASQ.L8X2tefxzpH7IjBj5AT5p5Cq3Cci1svAKeQ/G
+
+Enviando imagem para o repositorio
+> heroku container:push web
+
+Liberando imagem do aplicativo
+> heroku container:release web
+
+Abrir no navegador
+> heroku open
+
+Adicione o /topicos no endpoint da aplicação para requisação GET
+http://alura-forum.heroku.com/topicos
+
+Acompanhe os logs pelo comando
+> heroku logs --tail
